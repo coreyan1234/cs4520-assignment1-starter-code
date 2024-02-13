@@ -1,5 +1,6 @@
 package com.cs4520.assignment1
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +34,9 @@ class ProductsAdapter(private val products: List<List<Any?>>):
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_product, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(itemView)
     }
 
     /**
@@ -80,7 +81,12 @@ class ProductsAdapter(private val products: List<List<Any?>>):
 
         // Setting product image
         if (type == "Equipment") {
-            holder.imageViewProductImage.setImageResource()
+            holder.imageViewProductImage.setImageResource(R.drawable.equipment)
+            holder.itemView.setBackgroundColor(Color.parseColor("#E06666"))
+        }
+        else if (type == "Food") {
+            holder.imageViewProductImage.setImageResource(R.drawable.food)
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFD965"))
         }
     }
 
