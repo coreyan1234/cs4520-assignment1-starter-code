@@ -10,6 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ProductsAdapter(private val products: List<List<Any?>>):
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+    // Holds the views for adding it to image and text
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val textViewName: TextView = itemView.findViewById(R.id.productName)
+        val textViewExpiryDate: TextView = itemView.findViewById(R.id.productExpiryDate)
+        val textViewPrice: TextView = itemView.findViewById(R.id.productPrice)
+        val imageViewProductImage: ImageView = itemView.findViewById(R.id.productImage)
+    }
+
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
      * an item.
@@ -98,13 +106,4 @@ class ProductsAdapter(private val products: List<List<Any?>>):
     override fun getItemCount(): Int {
         return products.size
     }
-
-    // Holds the views for adding it to image and text
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textViewName: TextView = itemView.findViewById(R.id.productName)
-        val textViewExpiryDate: TextView = itemView.findViewById(R.id.productExpiryDate)
-        val textViewPrice: TextView = itemView.findViewById(R.id.productPrice)
-        val imageViewProductImage: ImageView = itemView.findViewById(R.id.productImage)
-    }
-
 }

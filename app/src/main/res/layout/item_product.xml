@@ -9,12 +9,14 @@
         android:id="@+id/productName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="@android:color/black"
         />
 
     <TextView
         android:id="@+id/productExpiryDate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="@android:color/black"
         android:visibility="gone"
         />
 
@@ -22,6 +24,7 @@
         android:id="@+id/productPrice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="@android:color/black"
         />
 
     <TextView
