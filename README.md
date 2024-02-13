@@ -1,6 +1,9 @@
 # Single Activity Android Application
 
-## Description:
+## GitHub Repo:
+https://github.com/coreyan1234/cs4520-assignment1-starter-code.git
+
+## Description
 This application allows users to login and view a list of products (equipments or foods). Use these credentials to login:
 
 Username: admin
