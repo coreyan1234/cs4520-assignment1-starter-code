@@ -13,7 +13,6 @@
             android:id="@+id/action_loginFragment_to_productListFragment"
             app:destination="@id/productListFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/productListFragment"
         android:name="com.cs4520.assignment1.fragments.ProductListFragment"
