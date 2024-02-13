@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
 import com.cs4520.assignment1.R
 
 class LoginFragment: Fragment() {
@@ -28,7 +28,7 @@ class LoginFragment: Fragment() {
             val password = passwordField.text.toString()
 
             if (username == "admin" && password == "admin") {
-                findNavController().navigate(R.id.action_loginFragment_to_productListFragment)
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_productListFragment)
             }
             else {
                 Toast.makeText(requireContext(), "Invalid username or password", Toast.LENGTH_SHORT).show()
