@@ -43,7 +43,7 @@ class ProductsAdapter(private val products: List<List<Any?>>):
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_product, parent, false)
+            .inflate(R.layout.item_product_row, parent, false)
         return ViewHolder(itemView)
     }
 
