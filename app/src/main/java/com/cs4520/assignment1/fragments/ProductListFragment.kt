@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cs4520.assignment1.Product
 import com.cs4520.assignment1.ProductsAdapter
 import com.cs4520.assignment1.R
 import com.cs4520.assignment1.productsDataset
@@ -23,11 +24,31 @@ class ProductListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_product_list, container, false)
-
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProducts)
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ProductsAdapter(productsDataset)
+
+        val productList = generateProductList()
+        recyclerView.adapter = ProductsAdapter(productList)
 
         return view
+    }
+
+    private fun generateProductList(): List<Product> {
+        val productList = mutableListOf<Product>()
+        for (product in productsDataset) {
+            val name = product[0] as String
+            val type = product[1] as String
+            val expiryDate = product[2] as? String
+            val price = product[3] as Int
+
+            if (type == "Equipment") {
+                productList.add(Product.Equipment(name, type, expiryDate, price))
+            }
+            else if (type == "Food") {
+                productList.add(Product.Food(name, type, expiryDate, price))
+            }
+        }
+        return productList
     }
 }

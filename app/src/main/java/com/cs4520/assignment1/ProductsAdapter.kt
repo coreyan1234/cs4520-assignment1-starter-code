@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProductsAdapter(private val products: List<List<Any?>>):
+class ProductsAdapter(private val productList: List<Product>):
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
     // Holds the views for adding it to image and text
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -69,30 +69,30 @@ class ProductsAdapter(private val products: List<List<Any?>>):
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currProduct = products[position]
-        val name = currProduct[0].toString()
-        val type = currProduct[1].toString()
-        val expiryDate = currProduct[2]
-        val price = currProduct[3]
+        val currProduct = productList[position]
+//        val name = currProduct[0].toString()
+//        val type = currProduct[1].toString()
+//        val expiryDate = currProduct[2]
+//        val price = currProduct[3]
 
-        holder.textViewName.text = name
-        holder.textViewPrice.text = "\$$price"
+        holder.textViewName.text = currProduct.name
+        holder.textViewPrice.text = "\$${currProduct.price}"
 
         // Setting expiry date visibility
-        if (expiryDate == null) {
+        if (currProduct.expiryDate == null) {
             holder.textViewExpiryDate.visibility = View.GONE
         }
         else {
             holder.textViewExpiryDate.visibility = View.VISIBLE
-            holder.textViewExpiryDate.text = "$expiryDate"
+            holder.textViewExpiryDate.text = "${currProduct.expiryDate}"
         }
 
         // Setting product image
-        if (type == "Equipment") {
+        if (currProduct.productType == "Equipment") {
             holder.imageViewProductImage.setImageResource(R.drawable.equipment)
             holder.itemView.setBackgroundColor(Color.parseColor("#E06666"))
         }
-        else if (type == "Food") {
+        else if (currProduct.productType == "Food") {
             holder.imageViewProductImage.setImageResource(R.drawable.food)
             holder.itemView.setBackgroundColor(Color.parseColor("#FFD965"))
         }
@@ -104,6 +104,6 @@ class ProductsAdapter(private val products: List<List<Any?>>):
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return products.size
+        return productList.size
     }
 }
