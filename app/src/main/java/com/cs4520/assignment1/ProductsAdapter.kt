@@ -4,18 +4,17 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.cs4520.assignment1.databinding.ItemProductRowBinding
 
 class ProductsAdapter(private val productList: List<Product>):
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
     // Holds the views for adding it to image and text
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textViewName: TextView = itemView.findViewById(R.id.productName)
-        val textViewExpiryDate: TextView = itemView.findViewById(R.id.productExpiryDate)
-        val textViewPrice: TextView = itemView.findViewById(R.id.productPrice)
-        val imageViewProductImage: ImageView = itemView.findViewById(R.id.productImage)
+    class ViewHolder(private val binding: ItemProductRowBinding) : RecyclerView.ViewHolder(binding.root) {
+        val textViewName = binding.productName
+        val textViewExpiryDate = binding.productExpiryDate
+        val textViewPrice = binding.productPrice
+        val imageViewProductImage = binding.productImage
     }
 
     /**
@@ -42,9 +41,8 @@ class ProductsAdapter(private val productList: List<Product>):
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_product_row, parent, false)
-        return ViewHolder(itemView)
+        val binding = ItemProductRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     /**
@@ -70,10 +68,6 @@ class ProductsAdapter(private val productList: List<Product>):
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currProduct = productList[position]
-//        val name = currProduct[0].toString()
-//        val type = currProduct[1].toString()
-//        val expiryDate = currProduct[2]
-//        val price = currProduct[3]
 
         holder.textViewName.text = currProduct.name
         holder.textViewPrice.text = "\$${currProduct.price}"

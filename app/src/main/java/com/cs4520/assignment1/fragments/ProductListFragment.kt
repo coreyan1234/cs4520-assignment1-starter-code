@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cs4520.assignment1.Product
 import com.cs4520.assignment1.ProductsAdapter
 import com.cs4520.assignment1.R
+import com.cs4520.assignment1.databinding.FragmentProductListBinding
 import com.cs4520.assignment1.productsDataset
 
 /**
@@ -18,15 +19,22 @@ import com.cs4520.assignment1.productsDataset
  * create an instance of this fragment.
  */
 class ProductListFragment : Fragment() {
+    private var _binding: FragmentProductListBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProducts)
+        _binding = FragmentProductListBinding.inflate(inflater, container, false)
+        val view = binding.root
 
+        val recyclerView = binding.recyclerViewProducts
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
+//        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProducts)
+
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val productList = generateProductList()
         recyclerView.adapter = ProductsAdapter(productList)
