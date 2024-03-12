@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:contentDescription="Product Image"
+            android:contentDescription="@string/product_image"
             />
 
         <LinearLayout
