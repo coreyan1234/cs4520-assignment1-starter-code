@@ -7,13 +7,11 @@ import androidx.room.Query
 import androidx.lifecycle.LiveData
 import androidx.room.OnConflictStrategy
 
+@Dao
 interface ProductDao {
-    @Dao
-    interface ProductDao {
-        @Query("SELECT * FROM product")
-        fun getAllProducts(): LiveData<List<Product>>
+    @Query("SELECT * FROM product")
+    fun getAllProducts(): LiveData<List<Product>>
 
-        @Insert(onConflict = OnConflictStrategy.REPLACE)
-        suspend fun insertAll(products: List<Product>)
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(products: List<Product>)
 }

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cs4520.assignment1.Product
 import com.cs4520.assignment1.ProductsAdapter
-import com.cs4520.assignment1.R
 import com.cs4520.assignment1.databinding.FragmentProductListBinding
+
 import com.cs4520.assignment1.productsDataset
+
 
 /**
  * A simple [Fragment] subclass.
@@ -44,7 +45,7 @@ class ProductListFragment : Fragment() {
             val name = product[0] as String
             val type = product[1] as String
             val expiryDate = product[2] as? String
-            val price = product[3] as Int
+            val price = product[3] as Double
 
             if (type == "Equipment") {
                 productList.add(Product.Equipment(name, type, expiryDate, price))

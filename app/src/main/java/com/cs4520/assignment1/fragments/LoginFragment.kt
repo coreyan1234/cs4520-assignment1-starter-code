@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.cs4520.assignment1.R
 import com.cs4520.assignment1.databinding.FragmentLoginBinding
 
+
 class LoginFragment: Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!

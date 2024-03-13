@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.cs4520.assignment4'
+    namespace 'com.cs4520.assignment1'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cs4520.assignment4"
+        applicationId "com.cs4520.assignment1"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -58,7 +58,7 @@ dependencies {
 
     // Room
     implementation 'androidx.room:room-runtime:2.5.0'
-    implementation 'androidx.room:room-common:2.6.1'
+//    implementation 'androidx.room:room-common:2.6.1'
     kapt 'androidx.room:room-compiler:2.5.0'
     implementation 'androidx.room:room-ktx:2.5.0'
 
