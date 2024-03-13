@@ -31,10 +31,6 @@ class ProductListFragment : Fragment() {
 
         val recyclerView = binding.recyclerViewProducts
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewProducts)
-
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val productList = generateProductList()
         recyclerView.adapter = ProductsAdapter(productList)
