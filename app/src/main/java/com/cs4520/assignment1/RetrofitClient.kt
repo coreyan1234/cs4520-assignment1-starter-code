@@ -14,6 +14,11 @@ object RetrofitClient {
             .build()
     }
 
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     // Creating ApiService instance
-    val apiService: ApiService = this.getInstance().create(ApiService::class.java)
+    val apiService: ApiService = retrofit.create(ApiService::class.java)
 }
