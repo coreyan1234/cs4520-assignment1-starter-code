@@ -13,16 +13,11 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class ProductViewModel(private val repository: ProductRepository): ViewModel() {
-//    val allProducts: LiveData<List<Product>> = repository.allProducts
+    val allProducts: LiveData<List<Product>> = repository.allProducts
 
-    fun refreshProducts(page: Int = 3) {
-//        viewModelScope.launch {
-//            repository.refreshProducts(page)
-//        }
-//        val apiService = RetrofitClient.apiService
-
+    init {
         // Launching a new coroutine
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.refreshProducts(3)
         }
     }

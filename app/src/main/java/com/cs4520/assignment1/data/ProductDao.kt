@@ -1,4 +1,4 @@
-package com.cs4520.assignment1
+package com.cs4520.assignment1.data
 
 
 import androidx.room.Dao
@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.lifecycle.LiveData
 import androidx.room.OnConflictStrategy
+import com.cs4520.assignment1.Product
 
 @Dao
 interface ProductDao {
