@@ -4,17 +4,41 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cs4520.assignment1.databinding.ItemProductRowBinding
 
-class ProductsAdapter(private val productList: List<Product>):
-    RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ViewHolder>(ProductDiffCallback()) {
     // Holds the views for adding it to image and text
     class ViewHolder(private val binding: ItemProductRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        val textViewName = binding.productName
-        val textViewExpiryDate = binding.productExpiryDate
-        val textViewPrice = binding.productPrice
-        val imageViewProductImage = binding.productImage
+        private val textViewName = binding.productName
+        private val textViewExpiryDate = binding.productExpiryDate
+        private val textViewPrice = binding.productPrice
+        private val imageViewProductImage = binding.productImage
+
+        fun bind(product: Product) {
+            textViewName.text = product.name
+            textViewPrice.text = "$${product.price}"
+
+            // Setting expiry date visibility
+            if (product.expiryDate.isNullOrEmpty()) {
+                textViewExpiryDate.visibility = View.GONE
+            }
+            else {
+                textViewExpiryDate.visibility = View.VISIBLE
+                textViewExpiryDate.text =  product.expiryDate //"${product.expiryDate}"
+            }
+
+            // Setting product image
+            if (product.productType == "Equipment") {
+                imageViewProductImage.setImageResource(R.drawable.equipment)
+                itemView.setBackgroundColor(Color.parseColor("#E06666"))
+            }
+            else if (product.productType == "Food") {
+                imageViewProductImage.setImageResource(R.drawable.food)
+                itemView.setBackgroundColor(Color.parseColor("#FFD965"))
+            }
+        }
     }
 
     /**
@@ -67,37 +91,7 @@ class ProductsAdapter(private val productList: List<Product>):
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currProduct = productList[position]
-
-        holder.textViewName.text = currProduct.name
-        holder.textViewPrice.text = "\$${currProduct.price}"
-
-        // Setting expiry date visibility
-        if (currProduct.expiryDate == null) {
-            holder.textViewExpiryDate.visibility = View.GONE
-        }
-        else {
-            holder.textViewExpiryDate.visibility = View.VISIBLE
-            holder.textViewExpiryDate.text = "${currProduct.expiryDate}"
-        }
-
-        // Setting product image
-        if (currProduct.productType == "Equipment") {
-            holder.imageViewProductImage.setImageResource(R.drawable.equipment)
-            holder.itemView.setBackgroundColor(Color.parseColor("#E06666"))
-        }
-        else if (currProduct.productType == "Food") {
-            holder.imageViewProductImage.setImageResource(R.drawable.food)
-            holder.itemView.setBackgroundColor(Color.parseColor("#FFD965"))
-        }
-    }
-
-    /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
-     * @return The total number of items in this adapter.
-     */
-    override fun getItemCount(): Int {
-        return productList.size
+        val currProduct = getItem(position)
+        holder.bind(currProduct)
     }
 }
