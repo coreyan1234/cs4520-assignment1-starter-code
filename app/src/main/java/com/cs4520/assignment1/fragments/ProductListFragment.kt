@@ -35,15 +35,14 @@ class ProductListFragment : Fragment() {
         adapter = ProductsAdapter()
         recyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         viewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
             if (products != null) {
                 adapter.submitList(products)
             }
         })
 
-        // TODO: shouldn't be handling all this logic here?
-//        viewModel.refreshProducts()
+        viewModel.refreshProducts()
 
         return view
     }

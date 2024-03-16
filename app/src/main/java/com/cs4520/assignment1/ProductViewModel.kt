@@ -15,7 +15,7 @@ import retrofit2.HttpException
 class ProductViewModel(private val repository: ProductRepository): ViewModel() {
     val allProducts: LiveData<List<Product>> = repository.allProducts
 
-    init {
+    fun refreshProducts(page: Int = 3) {
         // Launching a new coroutine
         viewModelScope.launch(Dispatchers.IO) {
             repository.refreshProducts(3)
