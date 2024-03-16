@@ -13,7 +13,7 @@ Password: admin
 ## Project Structure
 1. Classes
    - Product
-     - Represents the 2 types of products we can process from the given dataset
+     - Represents the products we can process from the database
    - ProductsAdapter
      - Serves as the connection/middleman between the dataset and the ProductListFragment
 2. Activity
