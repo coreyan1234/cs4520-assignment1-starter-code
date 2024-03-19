@@ -2,18 +2,11 @@ package com.cs4520.assignment1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.cs4520.assignment1.databinding.ActivityMainBinding
-import com.cs4520.assignment1.databinding.FragmentProductListBinding
 import com.cs4520.assignment1.fragments.LoginFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: ProductViewModel
+    lateinit var viewModel: ProductViewModelImpl
     private val adapter = ProductsAdapter()
     lateinit var binding: ActivityMainBinding
 

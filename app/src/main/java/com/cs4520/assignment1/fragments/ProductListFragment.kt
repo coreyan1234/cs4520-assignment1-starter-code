@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.cs4520.assignment1.ProductViewModel
+import com.cs4520.assignment1.ProductViewModelImpl
 import com.cs4520.assignment1.ProductsAdapter
 import com.cs4520.assignment1.databinding.FragmentProductListBinding
 
@@ -19,7 +19,7 @@ import com.cs4520.assignment1.databinding.FragmentProductListBinding
  * create an instance of this fragment.
  */
 class ProductListFragment : Fragment() {
-    private lateinit var viewModel: ProductViewModel
+    private lateinit var viewModel: ProductViewModelImpl
     private lateinit var adapter: ProductsAdapter
 
     override fun onCreateView(
@@ -35,12 +35,18 @@ class ProductListFragment : Fragment() {
         adapter = ProductsAdapter()
         recyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        viewModel.allProducts.observe(viewLifecycleOwner, Observer { products ->
-            if (products != null) {
-                adapter.submitList(products)
-            }
-        })
+        viewModel = ViewModelProvider(this)[ProductViewModelImpl::class.java]
+        viewModel.getData().observe(viewLifecycleOwner) {
+            recyclerView.visibility = View.VISIBLE
+            adapter.submitList(it)
+        }
+        viewModel.error().observe(viewLifecycleOwner) {
+            // hide recycler view
+            // show the error text view
+            // set the value on error text view
+            recyclerView.visibility = View.GONE
+
+        }
 
         viewModel.refreshProducts()
 
