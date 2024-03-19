@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("prod/{page}")
-    suspend fun getProducts(@Query("page") page: Int = 3): ProductResponse
+    suspend fun getProducts(@Query("page") page: Int = 3): List<Product>
 }

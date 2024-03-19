@@ -16,18 +16,9 @@ class ProductRepositoryImpl(private val productDao: ProductDao): ProductReposito
 
     override suspend fun refreshProducts() {
         try {
-            val productResponse = RetrofitClient.apiService.getProducts()
-            if (productResponse.products.isNotEmpty()) {
-                productDao.insertAll(productResponse.products)
-            }
-            else {
-                val products = productDao.getAllProducts()
-                if (products.isEmpty()) {
-                    withContext(Dispatchers.Main) {
-                        // tell the UI there is an error message you need to display
-                        error.value = productResponse.message
-                    }
-                }
+            val products = RetrofitClient.apiService.getProducts()
+            if (products.isNotEmpty()) {
+                productDao.insertAll(products)
             }
         } catch (e: Exception) {
             // Handle network error
