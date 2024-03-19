@@ -10,16 +10,14 @@ import kotlin.coroutines.coroutineContext
 class ProductRepository(private val productDao: ProductDao) {
     val allProducts: LiveData<List<Product>> = productDao.getAllProducts()
 
-    suspend fun refreshProducts(page: Int = 3) {
+    suspend fun refreshProducts() {
         try {
-            val response = RetrofitClient.apiService.getProducts(page)
-            if (response.isSuccessful) {
-                val products = response.body()
-                if (products != null) {
-                    productDao.insertAll(products)
-                }
-            } else {
-                // Handle error
+            val products = RetrofitClient.apiService.getProducts()
+            if (products.isNotEmpty()) {
+                productDao.insertAll(products)
+            }
+            else {
+                // TODO
             }
         } catch (e: Exception) {
             // Handle network error

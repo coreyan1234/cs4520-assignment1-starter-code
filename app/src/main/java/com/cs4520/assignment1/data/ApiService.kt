@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("prod/")
-    suspend fun getProducts(@Query("page") page: Int = 3): Response<List<Product>>
+    @GET("prod/{page}")
+    suspend fun getProducts(@Query("page") page: Int = 3): List<Product>
 }
