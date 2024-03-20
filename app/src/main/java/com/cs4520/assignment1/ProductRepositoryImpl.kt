@@ -2,14 +2,10 @@ package com.cs4520.assignment1
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
 import com.cs4520.assignment1.data.ProductDao
-import com.cs4520.assignment1.data.ProductDatabase
+import com.cs4520.assignment1.data.ProductDatabase_Impl
 import com.cs4520.assignment1.data.RetrofitClient
 import com.cs4520.assignment1.model.ProductRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.coroutineContext
 
 class ProductRepositoryImpl(private val productDao: ProductDao): ProductRepository {
     private val error = MutableLiveData<String>()
